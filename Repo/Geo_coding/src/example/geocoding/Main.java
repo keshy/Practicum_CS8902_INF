@@ -18,6 +18,7 @@ import android.widget.Toast;
 public class Main extends Activity 
 {
 	private LocationManager locationManager;
+	public LocationManager newLocation;
 	private Location currentLocation;
 	private TextView txtLatitude;
 	private TextView txtLongitude;
@@ -25,8 +26,8 @@ public class Main extends Activity
 	public Intent data;
 	public static String location;
 	
-    /** Called when the activity is first created. */
-    @Override
+	/** Called when the activity is first created. */
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
@@ -35,8 +36,10 @@ public class Main extends Activity
         this.txtLatitude = (TextView) findViewById(R.id.txtLatitude);
         this.txtLongitude = (TextView) findViewById(R.id.txtLongitude);
         
+        
         this.btnReverseGeocode = (Button) findViewById(R.id.btnReverseGeocode);
         currentLocation = new Location(LOCATION_SERVICE);
+        
         
         // Subscribe to our button's click event
         this.btnReverseGeocode.setOnClickListener(
@@ -117,6 +120,8 @@ public class Main extends Activity
 			resultIntent.putExtra("loc", result);
 			setResult(RESULT_OK, resultIntent);
 			finish();
+			
+			
 		}
     }
 }
