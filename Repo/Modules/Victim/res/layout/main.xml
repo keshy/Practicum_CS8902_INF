@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+android:id="@+id/widget28"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+android:orientation="vertical"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<RelativeLayout
+android:id="@+id/widget33"
+android:layout_width="320px"
+android:layout_height="432px"
+>
+<TextView
+android:id="@+id/title"
+android:layout_width="257px"
+android:layout_height="72px"
+android:text="Title"
+android:textSize="20sp"
+android:gravity="center"
+android:layout_alignParentTop="true"
+android:layout_centerHorizontal="true"
+>
+</TextView>
+<Button
+android:id="@+id/getlocation"
+android:layout_width="319px"
+android:layout_height="36px"
+android:text="Get Current Location On Map"
+android:textSize="18sp"
+android:layout_alignParentBottom="true"
+android:layout_alignParentRight="true"
+>
+</Button>
+</RelativeLayout>
+</LinearLayout>
