@@ -2,5 +2,7 @@
 <resources>
     <string name="hello">Hello World, Main!</string>
     <string name="app_name">GeocodingExample</string>
+    <string name="permlab_deadlyActivity">Geolocation data</string>
+    <string name="permdesc_deadlyActivity">Prevent this application from being used by other applications to get the user location based on gps (lat,long) data</string>
 <string name="GOOGLE_MAPS_API_KEY">0H4OB4VezmNB6eNWLPgfy3DxN4z4cVV2Jj80BQg</string>
 </resources>

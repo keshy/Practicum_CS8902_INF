@@ -3,13 +3,22 @@
       package="example.geocoding"
       android:versionCode="1"
       android:versionName="1.0">
+       
+       <permission android:name="MAIN_ACCESS"
+        android:label="@string/permlab_deadlyActivity"
+        android:description="@string/permdesc_deadlyActivity"
+        android:permissionGroup="android.permission-group.COST_MONEY"
+         />
+        
     <application android:icon="@drawable/icon" android:label="@string/app_name">
         <activity android:name=".Main"
-                  android:label="@string/app_name">
+                  android:label="@string/app_name"
+                  android:permission="example.geocoding.MAIN_ACCESS">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            
         </activity>
 
     </application>
