@@ -34,8 +34,8 @@ public class main extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
-				Intent intent = new Intent(main.this,ViewMap.class);
-				startActivity(intent);
+				//Intent intent = new Intent(main.this,ViewMap.class);
+				//startActivity(intent);
 				
 			}
 		});

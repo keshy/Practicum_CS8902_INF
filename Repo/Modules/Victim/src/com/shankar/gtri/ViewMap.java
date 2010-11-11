@@ -1,3 +1,4 @@
+/*
 package com.shankar.gtri;
  
 import com.google.android.maps.GeoPoint;
@@ -11,7 +12,7 @@ import android.os.Bundle;
  
 public class ViewMap extends MapActivity 
 {    
-    /** Called when the activity is first created. */
+    /** Called when the activity is first created. 
    
     MapView mapView;
     MapController mc;
@@ -28,3 +29,4 @@ public class ViewMap extends MapActivity
     return false;
     }
 }
+*/
