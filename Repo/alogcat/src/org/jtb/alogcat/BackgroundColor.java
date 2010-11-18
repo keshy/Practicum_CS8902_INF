@@ -14,6 +14,7 @@ public enum BackgroundColor {
 
 	static {
 		byHexColor = new HashMap<String, BackgroundColor>() {
+		
 			{
 				put("#000000", BLACK);
 				put("#ffffff", WHITE);
