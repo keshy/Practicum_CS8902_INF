@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="center">
-<TextView  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" android:text="Services Demo" android:gravity="center" android:textSize="20sp" android:padding="20dp"/>
-<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/buttonStart" android:text="Start"></Button>
-<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Stop" android:id="@+id/buttonStop"></Button>
-</LinearLayout>
+<AbsoluteLayout
+android:id="@+id/widget0"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<Button
+android:id="@+id/buttonStart"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Start"
+android:layout_x="37px"
+android:layout_y="254px"
+>
+</Button>
+<Button
+android:id="@+id/buttonStop"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Stop"
+android:layout_x="211px"
+android:layout_y="252px"
+>
+</Button>
+<TextView
+android:id="@+id/Title"
+android:layout_width="120px"
+android:layout_height="30px"
+android:text="Broadcast Service"
+android:layout_x="106px"
+android:layout_y="28px"
+>
+</TextView>
+</AbsoluteLayout>
