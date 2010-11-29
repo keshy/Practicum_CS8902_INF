@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+   
+   <!--  Temp display
+    <LinearLayout android:orientation="horizontal"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content">
+    	
+	    <TextView android:id="@+id/location_label"  
+		    android:layout_width="wrap_content" 
+		    android:layout_height="wrap_content" 
+		    android:text="Location: "
+		    />
+	    
+	    <TextView android:id="@+id/location_value"  
+		    android:layout_width="wrap_content" 
+		    android:layout_height="wrap_content" 
+		    />
+    </LinearLayout>
+    --> 
+    
+	<RelativeLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent">
+	   
+	   <!--  apiKey mapped to enck@cse.psu.edu and office machine debug.keystore --> 
+	    <com.google.android.maps.MapView android:id="@+id/map_view"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:apiKey="0l810ZApg-2xolVleV0xUHRt2o5cMuERzWjgHrg"
+	        android:clickable="true" />
+	        
+	    <LinearLayout android:id="@+id/map_zoom"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentBottom="true"
+	        android:layout_centerHorizontal="true" />
+	        
+	</RelativeLayout>
+</LinearLayout>
