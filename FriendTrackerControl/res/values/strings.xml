@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, FriendTrackerControl</string>
+    <string name="app_name">FriendTracker</string>
+    
+    <string name="permlab_friendNear">receive friend near notification</string>
+    <string name="permdesc_friendNear">Allows an application to receive a 
+   		notification when a friend is near. Malicious applications may 
+   		monitor your proximity to your friends</string>
+    	
+</resources>
