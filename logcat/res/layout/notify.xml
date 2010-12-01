@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+android:id="@+id/widget0"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<TextView
+android:id="@+id/text"
+android:layout_width="166px"
+android:layout_height="178px"
+android:text="TextView"
+android:textSize="20sp"
+android:layout_x="71px"
+android:layout_y="101px"
+>
+</TextView>
+</AbsoluteLayout>
