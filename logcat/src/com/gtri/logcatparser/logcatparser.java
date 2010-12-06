@@ -1,10 +1,9 @@
 package com.gtri.logcatparser;
 
 import android.app.Activity;
-import android.content.Intent;
+import android.app.NotificationManager;
 import android.view.View;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -13,7 +12,7 @@ public class logcatparser extends Activity implements OnClickListener{
 	public logcatService mService;
 	public static String TAG = "Service Demo Tag";
 	public Button onStart,onStop;
-	
+	private NotificationManager mNotificationManager; 
 	public void onCreate(Bundle icicles){
 		super.onCreate(icicles);
 		setContentView(R.layout.main);
@@ -23,8 +22,8 @@ public class logcatparser extends Activity implements OnClickListener{
 			
 		onStart.setOnClickListener(this);
 		onStop.setOnClickListener(this);
-			
-		mService = new logcatService(this.getApplicationContext());
+		mNotificationManager = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);	
+		mService = new logcatService(this.getApplicationContext(),mNotificationManager);
 		
 		
 	}
@@ -37,7 +36,7 @@ public class logcatparser extends Activity implements OnClickListener{
 				Log.v(TAG,"OnClick: starting the service now...");
 				
 				Thread t = new Thread(){
-				Handler handler = new Handler();
+				
 					
 				
 					public void run(){
