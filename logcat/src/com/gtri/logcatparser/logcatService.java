@@ -185,7 +185,9 @@ public class logcatService extends Service{
 						}
 						appInfo = new ApplicationInfo(pManager.getApplicationInfo(pckgName,PackageManager.GET_META_DATA));
 						
-						
+						/*
+						 * Share the data discovered about the victim to the UI thread.
+						 */
 						mShared = mContext.getSharedPreferences("Logcat", 0);
 						mEditor = mShared.edit();
 						
@@ -195,13 +197,14 @@ public class logcatService extends Service{
 						mEditor.putInt("UID", appInfo.uid);
 						mEditor.commit();
 						
+						/*
 						System.out.println("The innocent app's data directory = "+appInfo.dataDir);
 						System.out.println("The innocent app's source directory = "+appInfo.sourceDir);
 						System.out.println("The innocent app's permissions = "+appInfo.permission);
 						System.out.println("The innocent app's  UID = "+appInfo.uid);
 						System.out.println("The name of the application from the android:name = "+appInfo.name);
 						System.out.println("The name of the application from the android:label = "+appInfo.loadLabel(pManager));
-						
+						*/
 						when = System.currentTimeMillis();
 						notification = new Notification(icon, title, when);
 						notification.setLatestEventInfo(mContext, title, "Malicious activity detected! Press here to see details", contentIntent);
