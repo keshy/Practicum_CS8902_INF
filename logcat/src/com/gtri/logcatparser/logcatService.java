@@ -5,6 +5,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,25 +13,27 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.util.Log;
-
-
 
 public class logcatService extends Service{
 
-	private final String Filter = "Permission Denial:";
+	private final String Filter = "Caused by: java.lang.SecurityException: Permission Denial:";
 	private String mFilter = null;
 	private Pattern mFilterPattern = null;
 	private boolean mRunning = false;
 	public logcatparser parser = null;
 	public NotificationManager mManager = null;
 	private BufferedReader mReader;
-
+	private PackageManager pManager;
 	private boolean mIsFilterPattern;
 	private ArrayList<String> mLogCache = new ArrayList<String>();
 	private boolean mPlay = true;
 	private Process logcatProc;
-	
+	private SharedPreferences mShared;
+	private SharedPreferences.Editor mEditor;
 	private Context mContext;
 	public int icon;
 	public CharSequence title;
@@ -38,8 +41,10 @@ public class logcatService extends Service{
 	public Intent notificationintent;
 	public PendingIntent contentIntent;
 	public Notification notification;
-	
-	
+	public static int completed_notifications;
+	public String pckgName;
+	public int count;
+	public int flag;
 	final int Permission_ID = 1;
 	/**
 	 * Logcat Service: Parses logcat runtime execution to look for malicious activities. 
@@ -64,6 +69,7 @@ public class logcatService extends Service{
 	{
 		mContext =  context;
 		mFilterPattern = Pattern.compile(Filter,Pattern.CASE_INSENSITIVE);
+		pManager = context.getPackageManager();
 		
 		/*
 		 * Set up UI elements for notification 
@@ -72,11 +78,11 @@ public class logcatService extends Service{
 		mManager = mNotificationManager;
 		icon = R.drawable.notification_icon;
 		title = "Access Violation!";
-		when = System.currentTimeMillis();
 		notificationintent = new Intent(mContext,notifyAccess.class);
 		contentIntent = PendingIntent.getActivity(mContext, 0, notificationintent,Intent.FLAG_ACTIVITY_NEW_TASK);
-		notification = new Notification(icon, title, when);
-		notification.setLatestEventInfo(mContext, title, "Access permission violation!", contentIntent);
+		completed_notifications = 0;
+		count = 0;
+		flag = 0;
 		
 		// Check if Manager object is null 
 		if((mManager = mNotificationManager) == null)
@@ -92,16 +98,16 @@ public class logcatService extends Service{
 	/**
 	 * Start Service:
 	 * @author Shankar
+	 * @throws NameNotFoundException 
 	 */
 	
-	public void start() {
+	public void start() throws NameNotFoundException {
 		
 		mRunning = true;
 		
 		try {
-
+			count = 0;
 			logcatProc = Runtime.getRuntime().exec(new String[] {"logcat"});
-			//Log.v("Shankar's tag","I am in here!");
 		
 			mReader = new BufferedReader(new InputStreamReader(logcatProc.getInputStream()), 1024);
 			
@@ -111,7 +117,7 @@ public class logcatService extends Service{
 			String line;
 			
 			while (mRunning && (line = mReader.readLine()) != null) 
-			{
+			{	
 				if (!mRunning) 
 				{
 					break;
@@ -136,10 +142,73 @@ public class logcatService extends Service{
 					 * returns new Intent if match is found. 
 					 */
 					if(line.contains(Filter))
-					{
-						//Log.v("Shankar's tag","I am in here inside the filter!");
-						mManager.notify(Permission_ID, notification);
+					{	
+						/*
+						 * Perform string parsing to extract package name from which the details of the 
+						 * victim pacakge can be extracted.	
+						 */
+						
+						StringBuffer packageName = new StringBuffer();
+						int detect_cmp = 0;
+						int i = 0;
+						detect_cmp = 0;
+						
+						for(i=0;i<line.length();i++){
+							if(line.charAt(i)=='c'&&line.charAt(i+1)=='m'&&line.charAt(i+2)=='p')
+							{
+								//System.out.println("I am inside the parsing module");
+								detect_cmp = 1; 
+							}
+							if(detect_cmp == 1){
+								break;
+							}
+						}	
+						i+=4;
+						
+						while(line.charAt(i)!='/'){
+							//System.out.println(line.charAt(i));
+							packageName.append(line.charAt(i));
+							i++;
+						}
+						
+						System.out.println("The package name = "+packageName);
 					
+					
+						pckgName = new String(packageName.toString());
+						System.out.println("The string = "+pckgName);
+						
+						// Create object to store victim information
+						ApplicationInfo appInfo;
+						
+						if(pckgName == null){
+							System.out.println("pckg is null");
+						}
+						appInfo = new ApplicationInfo(pManager.getApplicationInfo(pckgName,PackageManager.GET_META_DATA));
+						
+						
+						mShared = mContext.getSharedPreferences("Logcat", 0);
+						mEditor = mShared.edit();
+						
+						mEditor.putString("Victim Package", pckgName);
+						mEditor.putString("Victim Application Name", appInfo.loadLabel(pManager).toString());
+						mEditor.putString("Source Directory", appInfo.sourceDir);
+						mEditor.putInt("UID", appInfo.uid);
+						mEditor.commit();
+						
+						System.out.println("The innocent app's data directory = "+appInfo.dataDir);
+						System.out.println("The innocent app's source directory = "+appInfo.sourceDir);
+						System.out.println("The innocent app's permissions = "+appInfo.permission);
+						System.out.println("The innocent app's  UID = "+appInfo.uid);
+						System.out.println("The name of the application from the android:name = "+appInfo.name);
+						System.out.println("The name of the application from the android:label = "+appInfo.loadLabel(pManager));
+						
+						when = System.currentTimeMillis();
+						notification = new Notification(icon, title, when);
+						notification.setLatestEventInfo(mContext, title, "Malicious activity detected! Press here to see details", contentIntent);
+						
+						Log.v("Shankar's tag","I am in here inside the filter!");
+						mManager.notify(Permission_ID, notification);
+						
 					}
 				}
 				else 

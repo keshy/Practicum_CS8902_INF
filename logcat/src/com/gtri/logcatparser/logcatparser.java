@@ -2,6 +2,7 @@ package com.gtri.logcatparser;
 
 import android.app.Activity;
 import android.app.NotificationManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.view.View;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,7 +41,12 @@ public class logcatparser extends Activity implements OnClickListener{
 					
 				
 					public void run(){
-						mService.start();
+						try {
+							mService.start();
+						} catch (NameNotFoundException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 						
 					}
 				};
