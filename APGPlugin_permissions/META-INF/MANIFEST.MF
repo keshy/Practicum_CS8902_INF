@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Helloworld-pluginname
+Bundle-SymbolicName: APGPlugin_permissions;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: helloworld.Activator
+Bundle-Vendor: Keshy
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.forms;bundle-version="3.5.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: .,
+ helloworld,
+ helloworld.actions
