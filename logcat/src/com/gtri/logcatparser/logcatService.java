@@ -20,7 +20,8 @@ import android.util.Log;
 
 public class logcatService extends Service{
 
-	private final String Filter = "Caused by: java.lang.SecurityException: Permission Denial:";
+	private final String Filter = "java.lang.SecurityException:";
+	
 	private String mFilter = null;
 	private Pattern mFilterPattern = null;
 	private boolean mRunning = false;
@@ -156,7 +157,7 @@ public class logcatService extends Service{
 						for(i=0;i<line.length();i++){
 							if(line.charAt(i)=='c'&&line.charAt(i+1)=='m'&&line.charAt(i+2)=='p')
 							{
-								//System.out.println("I am inside the parsing module");
+								System.out.println("I am inside the parsing module");
 								detect_cmp = 1; 
 							}
 							if(detect_cmp == 1){
@@ -171,7 +172,7 @@ public class logcatService extends Service{
 							i++;
 						}
 						
-						System.out.println("The package name = "+packageName);
+						System.out.println("$$$$$$$$$$$$$$$$$$$$$$The package name = "+packageName);
 					
 					
 						pckgName = new String(packageName.toString());

@@ -3,6 +3,7 @@
       package="com.gtri.logcatparser"
       android:versionCode="1"
       android:versionName="1.0">
+      
     <application android:icon="@drawable/icon" android:label="@string/app_name">
         <activity android:name=".logcatparser"
                   android:label="@string/app_name">
@@ -14,11 +15,12 @@
         <activity android:name=".notifyAccess"
                   android:label="@string/app_name">
         </activity>
-<service android:enabled="true" android:name=".logcatService" />
+<service android:enabled="true" 
+	     android:name=".logcatService"
+		 android:permission="com.gtri.logcatparser.LOG_ACCESS"/>
     </application>
     <uses-sdk android:minSdkVersion="4" />
     <uses-permission android:name="android.permission.READ_LOGS" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.WAKE_LOCK" />
-	<uses-permission android:name="example.geocoding.MAIN_ACCESS"></uses-permission> 
 </manifest> 

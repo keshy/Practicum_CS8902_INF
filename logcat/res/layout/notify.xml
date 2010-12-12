@@ -15,12 +15,13 @@ android:layout_y="3px"
 >
 <TextView
 android:id="@+id/Title"
-android:layout_width="235px"
+android:layout_width="235px" 
 android:layout_height="73px"
 android:text="Malicious Entity Detected! "
 android:textSize="24sp"
 android:typeface="serif"
 android:textStyle="bold"
+
 android:gravity="center"
 >
 </TextView>
