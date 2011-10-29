@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="Theme" parent="android:Theme.Dark"></style>
+
+	<style name="Theme.Transparent">
+		<item name="android:windowBackground">@drawable/transparent_background</item>
+		<item name="android:windowNoTitle">true</item>
+	</style>
+</resources>

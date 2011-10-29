@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="170dip"
+	    android:layout_height="170dip"
+	    android:layout_centerVertical="true"
+	    android:layout_centerHorizontal="true">
+	
+		<ImageView id="@+id/pause"
+			android:layout_alignParentTop="true"
+	        android:layout_centerHorizontal="true"
+			android:layout_width="50dip"
+			android:layout_height="50dip"
+			android:src="@drawable/menupause" />
+	
+		<ImageView id="@+id/skipb"
+			android:layout_alignParentLeft="true"
+			android:layout_centerVertical="true"
+			android:layout_width="50dip"
+			android:layout_height="50dip"
+			android:src="@drawable/menuskipb" />
+		
+		<ImageView id="@+id/skipf"
+			android:layout_alignParentRight="true"
+			android:layout_centerVertical="true"
+			android:layout_width="50dip"
+			android:layout_height="50dip"
+			android:src="@drawable/menuskipf" />
+	
+		<ImageView id="@+id/stop"
+			android:focusable="true"
+			android:layout_alignParentBottom="true"
+	        android:layout_centerHorizontal="true"
+			android:layout_width="50dip"
+			android:layout_height="50dip"
+			android:src="@drawable/menustop" />
+
+	</RelativeLayout>
+</RelativeLayout>
